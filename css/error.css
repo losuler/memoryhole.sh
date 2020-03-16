@@ -1,0 +1,18 @@
+main {
+   margin-bottom: 1em;
+}
+
+.start, .center, .end {
+  margin-top: 0px;
+}
+
+.error {
+    display: block;
+    white-space: nowrap;
+    margin: 0;
+    line-height: 1em;
+}
+
+.bold {
+  color: #d8d8d8;
+}
