@@ -35,24 +35,24 @@ func readConfig() (Config) {
 }
 
 func parseTemplate(filename string) {
-	var dir string
+    var dir string
 
-	// Read templates.
+    // Read templates.
     template, err := template.ParseFiles(filename)
     check(err)
 
-	dir = "out"
-	if _, err := os.Stat(dir); os.IsNotExist(err) {
-		os.Mkdir(dir, 0700)
-	}
+    dir = "out"
+    if _, err := os.Stat(dir); os.IsNotExist(err) {
+        os.Mkdir(dir, 0700)
+    }
 
-	file, err := os.Create(dir + "/" + filename)
-	check(err)
+    file, err := os.Create(dir + "/" + filename)
+    check(err)
 
-	// Read config.
+    // Read config.
     c := readConfig()
 
-	// Write output to new file.
+    // Write output to new file.
     err = template.Execute(file, c)
     check(err)
 }
