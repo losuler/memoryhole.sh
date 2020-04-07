@@ -13,6 +13,7 @@ type Config struct {
     Footer struct {
         Version string
         Date string
+        Source string
     }
 }
 
