@@ -35,23 +35,20 @@ func readConfig() (Config) {
     return c
 }
 
-func parseTemplate(filename string) {
+func parseTemplate(filename string, c Config) {
     var dir string
 
     // Read templates.
     template, err := template.ParseFiles(filename)
     check(err)
 
-    dir = "out"
+    dir = string(c.Footer.Version)
     if _, err := os.Stat(dir); os.IsNotExist(err) {
         os.Mkdir(dir, 0700)
     }
 
     file, err := os.Create(dir + "/" + filename)
     check(err)
-
-    // Read config.
-    c := readConfig()
 
     // Write output to new file.
     err = template.Execute(file, c)
@@ -62,10 +59,13 @@ func main() {
     files, err := ioutil.ReadDir(".")
     check(err)
 
+    // Read config.
+	c := readConfig()
+
     for _, file := range files {
         filename := file.Name()
         if strings.HasSuffix(filename, ".html") {
-            parseTemplate(filename)
+            parseTemplate(filename, c)
         }
     }
 }
