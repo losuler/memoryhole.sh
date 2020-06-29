@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
     "os"
+    "os/exec"
     "io/ioutil"
     "strings"
     "html/template"
@@ -78,6 +79,15 @@ func main() {
         filename := file.Name()
         if strings.HasSuffix(filename, ".html") {
             parseTemplate(filename, c)
+        }
+
+        if file.IsDir() {
+            rsync := exec.Command("rsync", "--archive",
+                "../css", "../fonts", c.Footer.Version)
+            if err := rsync.Run(); err != nil {
+                fmt.Println(err)
+                os.Exit(1)
+            }
         }
     }
 }
