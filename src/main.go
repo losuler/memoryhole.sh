@@ -60,7 +60,7 @@ func main() {
     check(err)
 
     // Read config.
-	c := readConfig()
+    c := readConfig()
 
     for _, file := range files {
         filename := file.Name()
