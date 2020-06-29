@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
     "os"
     "io/ioutil"
     "strings"
@@ -16,20 +17,20 @@ type Config struct {
     }
 }
 
-func check(e error) {
-    if e != nil {
-        panic(e)
-    }
-}
-
 func readConfig() (Config) {
     var c Config
     
     raw, err := ioutil.ReadFile("src/config.yml")
-    check(err)
+    if err != nil {
+    	fmt.Println(err)
+    	os.Exit(1)
+    }
 
     err = yaml.Unmarshal([]byte(raw), &c)
-    check(err)
+    if err != nil {
+    	fmt.Println(err)
+    	os.Exit(1)
+    }
 
     return c
 }
@@ -39,7 +40,10 @@ func parseTemplate(filename string, c Config) {
 
     // Read templates.
     template, err := template.ParseFiles(filename)
-    check(err)
+    if err != nil {
+    	fmt.Println(err)
+    	os.Exit(1)
+    }
 
     dir = string(c.Footer.Version)
     if _, err := os.Stat(dir); os.IsNotExist(err) {
@@ -47,16 +51,25 @@ func parseTemplate(filename string, c Config) {
     }
 
     file, err := os.Create(dir + "/" + filename)
-    check(err)
+    if err != nil {
+    	fmt.Println(err)
+    	os.Exit(1)
+    }
 
     // Write output to new file.
     err = template.Execute(file, c)
-    check(err)
+    if err != nil {
+    	fmt.Println(err)
+    	os.Exit(1)
+    }
 }
 
 func main() {
     files, err := ioutil.ReadDir(".")
-    check(err)
+    if err != nil {
+    	fmt.Println(err)
+    	os.Exit(1)
+    }
 
     // Read config.
     c := readConfig()
