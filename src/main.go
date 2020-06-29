@@ -89,4 +89,14 @@ func main() {
         fmt.Println(err)
         os.Exit(1)
     }
+
+    gzipName := c.Footer.Version + ".tar.gz"
+
+    gzip := exec.Command("tar", "--create",
+        "--file", gzipName, c.Footer.Version)
+
+    if err := gzip.Run(); err != nil {
+        fmt.Println(err)
+        os.Exit(1)
+    }
 }
