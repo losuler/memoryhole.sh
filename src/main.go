@@ -100,4 +100,9 @@ func main() {
         os.Exit(1)
     }
     fmt.Println("[INFO] Successfully created compressed archive.")
+
+    if err := os.RemoveAll(c.Footer.Version); err != nil {
+        fmt.Println(err)
+        os.Exit(1)
+    }
 }
