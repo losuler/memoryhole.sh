@@ -39,7 +39,7 @@ func parseTemplate(filename string, c Config) {
     var dir string
 
     // Read templates.
-    template, err := template.ParseFiles(filename)
+    template, err := template.ParseFiles("../" + filename)
     if err != nil {
     	fmt.Println(err)
     	os.Exit(1)
@@ -65,7 +65,7 @@ func parseTemplate(filename string, c Config) {
 }
 
 func main() {
-    files, err := ioutil.ReadDir(".")
+    files, err := ioutil.ReadDir("..")
     if err != nil {
     	fmt.Println(err)
     	os.Exit(1)
