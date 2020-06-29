@@ -20,7 +20,7 @@ type Config struct {
 
 func readConfig() (Config) {
     var c Config
-    
+
     raw, err := ioutil.ReadFile("config.yml")
     if err != nil {
         fmt.Println(err)
