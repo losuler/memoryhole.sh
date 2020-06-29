@@ -79,9 +79,9 @@ func main() {
         filename := file.Name()
         if strings.HasSuffix(filename, ".html") {
             parseTemplate(filename, c)
-            fmt.Println("[INFO] Successfully generated files from templates.")
         }
     }
+    fmt.Println("[INFO] Successfully generated files from templates.")
 
     rsync := exec.Command("rsync", "--archive",
         "../css", "../fonts", c.Footer.Version)
