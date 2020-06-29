@@ -6,7 +6,7 @@ import (
     "io/ioutil"
     "strings"
     "html/template"
-    "gopkg.in/yaml.v2"
+    "github.com/go-yaml/yaml"
 )
 
 type Config struct {
