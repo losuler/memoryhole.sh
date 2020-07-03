@@ -1,15 +1,15 @@
 @font-face {
-  font-family: "PxPlus_IBM_VGA8";
-  src: url("../fonts/PxPlus_IBM_VGA8.woff2");
+  font-family: "Px437_Verite_8x8-2y";
+  src: url("../fonts/Px437_Verite_8x8-2y.woff2");
 }
 
 body {
   margin: 32px 32px 0em 32px;
   background: #000000;
   color: #999999;
-  font-family: 'PxPlus_IBM_VGA8', monospace;
+  font-family: 'Px437_Verite_8x8-2y', monospace;
   font-size: 16px;
-  line-height: 16px;
+  line-height: 17px;
   max-width: 884px;
   z-index: 1;
 }
