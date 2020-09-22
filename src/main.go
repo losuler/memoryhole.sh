@@ -36,22 +36,19 @@ func readConfig() (Config) {
     return c
 }
 
-func parseTemplate(filename string, c Config) {
-    var dir string
-
+func parseTemplate(templateDir string, buildDir string, filename string, c Config) {
     // Read templates.
-    template, err := template.ParseFiles("../" + filename)
+    template, err := template.ParseFiles(templateDir + "/" + filename)
     if err != nil {
         fmt.Println(err)
         os.Exit(1)
     }
 
-    dir = string(c.Footer.Version)
-    if _, err := os.Stat(dir); os.IsNotExist(err) {
-        os.Mkdir(dir, 0700)
+    if _, err := os.Stat(buildDir); os.IsNotExist(err) {
+        os.Mkdir(buildDir, 0700)
     }
 
-    file, err := os.Create(dir + "/" + filename)
+    file, err := os.Create(buildDir + "/" + filename)
     if err != nil {
         fmt.Println(err)
         os.Exit(1)
@@ -65,26 +62,37 @@ func parseTemplate(filename string, c Config) {
     }
 }
 
-func main() {
-    files, err := ioutil.ReadDir("..")
+func buildTemplates(templateDir string, buildDir string, c Config) {
+    files, err := ioutil.ReadDir(templateDir)
     if err != nil {
         fmt.Println(err)
         os.Exit(1)
     }
 
-    // Read config.
-    c := readConfig()
-
     for _, file := range files {
         filename := file.Name()
         if strings.HasSuffix(filename, ".html") {
-            parseTemplate(filename, c)
+            parseTemplate(templateDir, buildDir, filename, c)
         }
     }
     fmt.Println("[INFO] Successfully generated files from templates.")
+}
+
+func main() {
+    c := readConfig()
+
+    buildTemplates("..", string(c.Footer.Version), c)
+    buildTemplates("../vlsm", string(c.Footer.Version + "/vlsm"), c)
 
     rsync := exec.Command("rsync", "--archive",
         "../css", "../fonts", c.Footer.Version)
+    if err := rsync.Run(); err != nil {
+        fmt.Println(err)
+        os.Exit(1)
+    }
+
+    rsync = exec.Command("rsync", "--archive",
+        "../vlsm/vlsm.go", c.Footer.Version + "/vlsm/")
     if err := rsync.Run(); err != nil {
         fmt.Println(err)
         os.Exit(1)
