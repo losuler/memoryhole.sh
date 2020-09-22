@@ -1,0 +1,14 @@
+[Unit]
+Description=VLSM Calculator Backend
+After=network-online.target
+Requires=network-online.target
+
+[Service]
+User=vlsm
+Group=vlsm
+WorkingDirectory=/usr/share/vlsm
+ExecStart=/usr/bin/vlsm
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

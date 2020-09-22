@@ -1,4 +1,4 @@
 misc/*
-v*/
-v*.tar.gz
-main
+src/v*/
+src/v*.tar.gz
+src/main

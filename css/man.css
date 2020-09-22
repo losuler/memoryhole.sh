@@ -79,12 +79,30 @@ a:hover {
   color: #000000;
 }
 
-p {
+p, blockquote, .output, .output-error, .output-placeholder {
   margin-top: 5px;
 }
 
-blockquote {
-  margin-top: 5px;
+pre {
+  color: #999999;
+  font-family: 'Px437_Verite_8x8-2y', monospace;
+  font-size: 16px;
+  line-height: 17px;
+  color: #525252;
+}
+
+input[type="text"] {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #999999;
+  font-family: 'Px437_Verite_8x8-2y', monospace;
+  font-size: 16px;
+}
+
+::placeholder {
+  color: #525252;
+  opacity: 1;
 }
 
 .version {
@@ -156,4 +174,31 @@ blockquote {
 .title {
   margin-bottom: 0;
   color: #d8d8d8;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  overflow: auto;
+  height: 500px;
+  scrollbar-width: none;
+}
+
+.output, .output-error, .output-placeholder {
+  white-space: pre;
+  margin-bottom: 16px;
+  font-family: 'Px437_Verite_8x8-2y', monospace;
+  font-size: 16px;
+  line-height: 17px;
+  color: #999999;
+}
+
+.output-error {
+  color: #8e0000;
+}
+
+.output-placeholder {
+  color: #525252;
 }
