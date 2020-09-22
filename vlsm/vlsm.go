@@ -22,7 +22,8 @@ func processInput(input string) Data {
     inputSlice := strings.Fields(input)
 
     // TODO: Check commands exist and are the correct ones (e.g. ipcalc)
-    cmd := fmt.Sprintf("script --quiet --log-out /dev/null -c 'ipcalc-jodies %s --s %s' | ansifilter -H -f",
+    cmd := fmt.Sprintf("script --quiet -c 'ipcalc-jodies %s --s %s' | ansifilter -H -f",
+    //cmd := fmt.Sprintf("script --quiet --log-out /dev/null -c 'ipcalc %s --s %s' | ansifilter -H -f",
     //cmd := fmt.Sprintf("ipcalc %s --s %s", 
                        inputSlice[0], strings.Trim(fmt.Sprint(inputSlice[1:]), "[]"))
 
