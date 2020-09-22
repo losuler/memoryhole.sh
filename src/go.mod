@@ -1,4 +1,4 @@
-module gitlab.com/losuler/memoryhole.sh
+module gitlab.com/losuler/procupti.me
 
 go 1.14
 
