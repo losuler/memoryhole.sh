@@ -92,7 +92,7 @@ func main() {
     }
 
     rsync = exec.Command("rsync", "--archive",
-        "../vlsm/vlsm.go", c.Footer.Version + "/vlsm/")
+        "../vlsm/vlsm.go", "../vlsm/vlsm.service", c.Footer.Version + "/vlsm/")
     if err := rsync.Run(); err != nil {
         fmt.Println(err)
         os.Exit(1)
