@@ -5,3 +5,4 @@
 - [ ] Replace `exec.Command` for `tar` using `compress/gzip`
 - [ ] Rewrite `exec.Command` for `rsync` using `io.Copy`
 - [ ] Increase font size at smallest max-width
+- [ ] Fix margin in links under the SEE ALSO section
