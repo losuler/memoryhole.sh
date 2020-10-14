@@ -97,7 +97,7 @@ input[type="text"] {
   background: transparent;
   color: #999999;
   font-family: 'Px437_Verite_8x8-2y', monospace;
-  font-size: 16px;
+  font-size: inherit;
 }
 
 ::placeholder {
