@@ -37,7 +37,7 @@ body {
 @media (max-width:374px) {
   body {
     font-size: 10px;
-    line-height: 11px;
+    line-height: 10px;
     margin: 25px 25px 0em 25px;
   }
   .status {
