@@ -105,6 +105,14 @@ input[type="text"] {
   opacity: 1;
 }
 
+.option {
+    margin-bottom: 8px;
+}
+
+.parameter {
+    margin-left: 7ch;
+}
+
 .version {
   color: #999999;
 }
