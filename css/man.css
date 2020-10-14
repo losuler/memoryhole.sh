@@ -211,3 +211,7 @@ input[type="text"] {
 .output-placeholder {
   color: #525252;
 }
+
+outer-prompt {
+  white-space: nowrap;
+}
